@@ -1,15 +1,15 @@
-import React from 'react';
-import { Line } from 'react-chartjs-2';
-import { Col, Row, Typography } from 'antd';
+import React from 'react'
+import { Line } from 'react-chartjs-2'
+import { Col, Row, Typography } from 'antd'
 
-const { Title } = Typography;
+const { Title } = Typography
 
 const LineChart = ({ coinHistory, currentPrice, coinName }) => {
-  const coinPrice = [];
-  const coinTimestamp = [];
+  const coinPrice = []
+  const coinTimestamp = []
 
   for (let i = 0; i < coinHistory?.data?.history?.length; i += 1) {
-    coinPrice.push(coinHistory?.data?.history[i].price);
+    coinPrice.push(coinHistory?.data?.history[i].price)
   }
 
   for (let i = 0; i < coinHistory?.data?.history?.length; i += 1) {
@@ -27,7 +27,7 @@ const LineChart = ({ coinHistory, currentPrice, coinName }) => {
         borderColor: '#0071bd',
       },
     ],
-  };
+  }
 
   const options = {
     scales: {
@@ -39,7 +39,7 @@ const LineChart = ({ coinHistory, currentPrice, coinName }) => {
         },
       ],
     },
-  };
+  }
 
   return (
     <>
@@ -52,7 +52,7 @@ const LineChart = ({ coinHistory, currentPrice, coinName }) => {
       </Row>
       <Line data={data} options={options} />
     </>
-  );
-};
+  )
+}
 
-export default LineChart;
+export default LineChart
