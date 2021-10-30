@@ -5,6 +5,7 @@ import millify from 'millify'
 import { Col, Row, Typography, Select } from 'antd'
 import { MoneyCollectOutlined, DollarCircleOutlined, FundOutlined, ExclamationCircleOutlined, StopOutlined, TrophyOutlined, CheckOutlined, NumberOutlined, ThunderboltOutlined } from '@ant-design/icons';
 
+import { useGetValueQuery } from '../services/exchangeApi'
 import { useGetCryptoDetailsQuery, useGetCryptoHistoryQuery } from '../services/cryptoApi'
 import Loader from './Loader'
 import LineChart from './LineChart'
@@ -18,25 +19,31 @@ const CryptoDetails = () => {
   const { data, isFetching } = useGetCryptoDetailsQuery(coinId)
   const { data: coinHistory } = useGetCryptoHistoryQuery({ coinId, timeperiod })
   const cryptoDetails = data?.data?.coin
+  const { data: exchangeValue } = useGetValueQuery();
+  const value = exchangeValue?.conversion_rate;
 
   if (isFetching) return <Loader />
 
+<<<<<<< HEAD
   const time = ['24h', '7d', '30d', '1y', '5y']
 
+=======
+  const time = ['3h', '24h', '7d', '30d', '3m', '1y', '3y', '5y']
+>>>>>>> 6f697ed64170d66c018ef2f24b629327fe43333b
   const stats = [
-    { title: 'Price to USD', value: `$ ${cryptoDetails.price && millify(cryptoDetails.price)}`, icon: <DollarCircleOutlined /> },
+    { title: 'Price to INR', value: `Rs ${cryptoDetails.price && millify(cryptoDetails.price * value)}`, icon: <DollarCircleOutlined /> },
     { title: 'Rank', value: cryptoDetails.rank, icon: <NumberOutlined /> },
-    { title: '24h Volume', value: `$ ${cryptoDetails.volume && millify(cryptoDetails.volume)}`, icon: <ThunderboltOutlined /> },
-    { title: 'Market Cap', value: `$ ${cryptoDetails.marketCap && millify(cryptoDetails.marketCap)}`, icon: <DollarCircleOutlined /> },
-    { title: 'All-time-high(daily avg.)', value: `$ ${millify(cryptoDetails.allTimeHigh.price)}`, icon: <TrophyOutlined /> },
+    { title: '24h Volume', value: `Rs ${cryptoDetails.volume && millify(cryptoDetails.volume * value)}`, icon: <ThunderboltOutlined /> },
+    { title: 'Market Cap', value: `Rs ${cryptoDetails.marketCap && millify(cryptoDetails.marketCap * value)}`, icon: <DollarCircleOutlined /> },
+    { title: 'All-time-high(daily avg.)', value: `Rs ${millify(cryptoDetails.allTimeHigh.price * value)}`, icon: <TrophyOutlined /> },
   ]
 
   const genericStats = [
     { title: 'Number Of Markets', value: cryptoDetails.numberOfMarkets, icon: <FundOutlined /> },
     { title: 'Number Of Exchanges', value: cryptoDetails.numberOfExchanges, icon: <MoneyCollectOutlined /> },
     { title: 'Aprroved Supply', value: cryptoDetails.approvedSupply ? <CheckOutlined /> : <StopOutlined />, icon: <ExclamationCircleOutlined /> },
-    { title: 'Total Supply', value: `$ ${millify(cryptoDetails.totalSupply)}`, icon: <ExclamationCircleOutlined /> },
-    { title: 'Circulating Supply', value: `$ ${millify(cryptoDetails.circulatingSupply)}`, icon: <ExclamationCircleOutlined /> },
+    { title: 'Total Supply', value: `Rs ${millify(cryptoDetails.totalSupply * value)}`, icon: <ExclamationCircleOutlined /> },
+    { title: 'Circulating Supply', value: `Rs ${millify(cryptoDetails.circulatingSupply * value)}`, icon: <ExclamationCircleOutlined /> },
   ]
 
   return (
@@ -45,7 +52,7 @@ const CryptoDetails = () => {
         <Title level={2} className="coin-name">
           {data?.data?.coin.name} ({data?.data?.coin.slug}) Price
         </Title>
-        <p>{cryptoDetails.name} live price in US Dollar (USD). View value statistics, market cap and supply.</p>
+        <p>{cryptoDetails.name} live price in Indian Rs (INR). View value statistics, market cap and supply.</p>
       </Col>
       <Select defaultValue="7d" className="select-timeperiod" placeholder="Select Timeperiod" onChange={(value) => setTimeperiod(value)}>
         {time.map((date) => <Option key={date}>{date}</Option>)}
