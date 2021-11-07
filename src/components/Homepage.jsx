@@ -16,6 +16,7 @@ const Homepage = () => {
   const globalStats = data?.data?.stats;
   const { data:exchangeValue } = useGetValueQuery();
   const value = exchangeValue?.conversion_rate;
+  console.log(globalStats)
   
   if (isFetching) return <Loader />
   return (

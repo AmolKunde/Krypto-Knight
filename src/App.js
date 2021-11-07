@@ -35,7 +35,7 @@ const App = () => {
                 </Layout>
 
                 <div className="footer">
-                    <Typography.Title level={5} style={{ color: 'white', textAlign: 'center' }}>Copyright © 2021
+                    <Typography.Title level={5} style={{ color: 'white', textAlign: 'center' }}>
                         Krypto-Knight
                         All rights reserved
                     </Typography.Title>
