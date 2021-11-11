@@ -9,7 +9,7 @@ app.use(cors());
 
 const port = 8080;
 app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, 'bank-client/build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 
