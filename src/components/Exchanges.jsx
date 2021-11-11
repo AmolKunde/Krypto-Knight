@@ -39,7 +39,7 @@ const Exchanges = () => {
                       <Avatar className="exchange-image" src={exchange.iconUrl} />
                       <Text><strong>{exchange.name}</strong></Text>
                     </Col>
-                    <Col span={6}>Rs {millify(exchange.volume * value)}</Col>
+                    <Col span={6}>Rs {millify(exchange.numberOfMarkets * value)}</Col>
                     <Col span={6}>{millify(exchange.numberOfMarkets)}</Col>
                     <Col span={6}>{millify(exchange.marketShare)}%</Col>
                   </Row>
