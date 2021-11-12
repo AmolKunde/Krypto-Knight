@@ -37,15 +37,15 @@ const CryptoDetails = () => {
     { title: 'Number Of Markets', value: cryptoDetails.numberOfMarkets, icon: <FundOutlined /> },
     { title: 'Number Of Exchanges', value: cryptoDetails.numberOfExchanges, icon: <MoneyCollectOutlined /> },
     { title: 'Aprroved Supply', value: cryptoDetails.approvedSupply ? <CheckOutlined /> : <StopOutlined />, icon: <ExclamationCircleOutlined /> },
-    { title: 'Total Supply', value: `Rs ${millify(cryptoDetails.totalSupply * value)}`, icon: <ExclamationCircleOutlined /> },
-    { title: 'Circulating Supply', value: `Rs ${millify(cryptoDetails.circulatingSupply * value)}`, icon: <ExclamationCircleOutlined /> },
+    { title: 'Total Supply', value: `Rs ${millify(cryptoDetails.supply.total * value)}`, icon: <ExclamationCircleOutlined /> },
+    { title: 'Circulating Supply', value: `Rs ${millify(cryptoDetails.supply.circulating * value)}`, icon: <ExclamationCircleOutlined /> },
   ]
 
   return (
     <Col className="coin-detail-container">
       <Col className="coin-heading-container">
         <Title level={2} className="coin-name">
-          {data?.data?.coin.name} ({data?.data?.coin.slug}) Price
+          {data?.data?.coin.name}  Price
         </Title>
         <p>{cryptoDetails.name} live price in Indian Rs (INR). View value statistics, market cap and supply.</p>
       </Col>

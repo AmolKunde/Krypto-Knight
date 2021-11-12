@@ -9,7 +9,7 @@ const createRequest = (url) => ({ url, headers: cryptoApiHeaders });
 export const cryptoApi = createApi({
   reducerPath: 'cryptoApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://api.coinranking.com/v2' }),
+    baseUrl: 'https://cors-anywhere.herokuapp.com/https://api.coinranking.com/v2' }),
   endpoints: (builder) => ({
     getCryptos: builder.query({
       query: (count) => createRequest(`/coins?limit=${count}`),
@@ -21,7 +21,7 @@ export const cryptoApi = createApi({
       query: (coinId) => createRequest(`/coin/${coinId}`),
     }),
     getCryptoHistory: builder.query({
-      query: ({ coinId, timeperiod }) => createRequest(`coin/${coinId}/history/${timeperiod}`),
+      query: ({ coinId, timeperiod }) => createRequest(`coin/${coinId}/history?timePeriod=${timeperiod}`),
     }),
   }),
 });
